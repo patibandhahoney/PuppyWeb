@@ -1,0 +1,15 @@
+/* App Container Styles */
+
+.tp-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--color-milk);
+}
+
+.tp-main {
+  flex: 1;
+}
+
+

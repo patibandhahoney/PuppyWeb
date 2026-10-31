@@ -1,0 +1,171 @@
+/* Hide static mascot buddies when the live walking puppy is active */
+html[data-pup] .pup-stop > .pup-buddy {
+  visibility: hidden !important;
+}
+
+/* Base stop containers */
+.pup-stop {
+  pointer-events: none;
+}
+
+.pup-stop > .pup-buddy {
+  width: 100%;
+}
+
+/* Main floating layer that contains the active walking puppy */
+.pup-layer {
+  z-index: 30;
+  pointer-events: none;
+  contain: layout paint style;
+  position: fixed;
+  inset: 0;
+  overflow: clip;
+}
+
+.pup-layer[data-front="false"] {
+  z-index: 15;
+}
+
+.pup-layer[data-anchor="bottom"] {
+  height: 100lvh;
+  top: auto;
+}
+
+.pup-layer[hidden] {
+  display: none;
+}
+
+/* Hidden probe for viewport measuring */
+.pup-probe {
+  visibility: hidden;
+  pointer-events: none;
+  width: 0;
+  height: 100svh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* Paw prints stamped along the puppy's walking path */
+.pup-prints {
+  z-index: 5;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+}
+
+.pup-prints > svg {
+  opacity: 0;
+  width: 15px;
+  height: 15px;
+  fill: var(--color-toffee, #c2622b);
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Floating puppy actor */
+.pup-actor {
+  will-change: transform;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.pup-actor__body {
+  transform-origin: 0 0;
+  width: 300px;
+  position: relative;
+}
+
+.pup-actor__body > svg {
+  width: 300px;
+  height: 240px;
+  display: block;
+  overflow: visible;
+}
+
+.pup-actor .pup-actor__body > svg :is(path, ellipse, circle) {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+}
+
+/* Mouse hover / paw cursor */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .pup-actor .pup-actor__body > svg :is(path, ellipse, circle) {
+    cursor: url(/cursor/paw-press.svg) 9 6, pointer;
+  }
+}
+
+/* Speech bubble container & balloon */
+.pup-bubble-at {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.pup-bubble-at .pup-bubble {
+  left: 0 !important;
+  bottom: 0 !important;
+}
+
+.pup-bubble {
+  border: 2.5px solid var(--color-cocoa, #2a170e);
+  background: var(--color-milk, #fffdf8);
+  color: var(--color-cocoa, #2a170e);
+  font-family: var(--font-hand, 'Shantell Sans', cursive);
+  font-variation-settings: "INFM" 60, "BNCE" 30;
+  white-space: nowrap;
+  opacity: 0;
+  transform-origin: 30% 100%;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease-out;
+  border-radius: 1.1rem 1.1rem 1.1rem 0.25rem;
+  padding: 0.35rem 0.95rem 0.4rem;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 0) scale(0.4);
+  box-shadow: 2px 3px rgba(42, 23, 14, 0.18);
+  pointer-events: none;
+  z-index: 40;
+}
+
+.pup-bubble[data-show="true"] {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+/* Floating Love Hearts on click */
+.pup-heart {
+  color: var(--color-toffee, #c2622b);
+  pointer-events: none;
+  text-shadow: 0 1px 0 var(--color-milk, #fffdf8);
+  font-size: 1.45rem;
+  line-height: 1;
+  position: absolute;
+  z-index: 50;
+  user-select: none;
+}
+
+/* House door swing open when puppy visits */
+html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
+  transform: rotateY(-102deg);
+  transition: transform 1.2s cubic-bezier(0.3, 1.25, 0.5, 1) 0.3s;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .pup-layer {
+    display: none !important;
+  }
+  html[data-pup] .pup-stop > .pup-buddy {
+    visibility: visible !important;
+  }
+}

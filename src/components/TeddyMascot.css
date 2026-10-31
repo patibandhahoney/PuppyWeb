@@ -1,0 +1,152 @@
+.pup-buddy {
+  position: relative;
+  display: block;
+}
+
+.pup-buddy svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.pup-buddy[data-facing="left"] svg {
+  transform: scale(-1, 1);
+  transform-origin: center;
+}
+
+.pup-buddy--interactive {
+  cursor: pointer;
+}
+
+.pup-bubble {
+  position: absolute;
+  bottom: 84%;
+  left: 72%;
+  border: 2.5px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  font-family: var(--font-hand);
+  white-space: nowrap;
+  opacity: 0;
+  transform-origin: 30% 100%;
+  transition: transform 0.4s var(--ease-pounce), opacity 0.18s ease-out;
+  border-radius: 1.1rem 1.1rem 1.1rem 0.25rem;
+  padding: 0.3rem 0.85rem 0.35rem;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  transform: translate(-50%, 0) scale(0.4);
+  box-shadow: 2px 3px #2a170e2e;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.pup-buddy[data-facing="left"] .pup-bubble {
+  left: 28%;
+}
+
+.pup-bubble[data-show="true"] {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.pup-ear--twitch {
+  transform-box: fill-box;
+  transform-origin: 50% 20%;
+  animation: tp-ear-twitch 4.2s ease-in-out infinite;
+}
+
+@keyframes tp-ear-twitch {
+  0%, 75%, 100% {
+    transform: rotate(0deg);
+  }
+  78% {
+    transform: rotate(-12deg);
+  }
+  82% {
+    transform: rotate(6deg);
+  }
+  86% {
+    transform: rotate(-3deg);
+  }
+}
+
+.pup-tail--wag {
+  transform-box: fill-box;
+  transform-origin: 90% 90%;
+  animation: tp-tail-wag 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes tp-tail-wag {
+  0% {
+    transform: rotate(-18deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+.pup-breathe {
+  transform-origin: 70% 66%;
+  animation: 3.8s ease-in-out infinite tp-breathe;
+}
+
+@keyframes tp-breathe {
+  0%, 100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 1.02);
+  }
+}
+
+.pup-blink-open {
+  animation: 6.2s infinite tp-blink-open;
+}
+
+.pup-blink-shut {
+  animation: 6.2s infinite tp-blink-shut;
+}
+
+@keyframes tp-blink-open {
+  0%, 92%, 97%, 100% {
+    opacity: 1;
+  }
+  94.5% {
+    opacity: 0;
+  }
+}
+
+@keyframes tp-blink-shut {
+  0%, 92%, 97%, 100% {
+    opacity: 0;
+  }
+  94.5% {
+    opacity: 1;
+  }
+}
+
+.pup-heart-pop {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 1.4rem;
+  color: var(--color-toffee);
+  pointer-events: none;
+  animation: tp-heart-float 0.8s ease-out forwards;
+}
+
+@keyframes tp-heart-float {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(0.6);
+  }
+  50% {
+    transform: translate(-50%, -20px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -35px) scale(1.4);
+  }
+}

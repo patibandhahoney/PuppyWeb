@@ -1,0 +1,311 @@
+.tp-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--color-milk);
+  box-shadow: 0 4px 18px rgba(42, 23, 14, 0.05);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.tp-header__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  height: var(--header-h);
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Brand Logo */
+.tp-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--color-cocoa);
+  user-select: none;
+}
+
+.tp-brand__logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-honey);
+  background: var(--color-honey-soft);
+  box-shadow: 0 3px 8px rgba(42, 23, 14, 0.12);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tp-brand:hover .tp-brand__logo {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.tp-brand__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.tp-brand__title {
+  font-family: var(--font-plush);
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-cocoa);
+  letter-spacing: -0.02em;
+}
+
+.tp-brand__tagline {
+  font-family: var(--font-scrawl);
+  font-size: 0.85rem;
+  color: var(--color-toffee);
+  line-height: 1.1;
+  transform: rotate(-1deg);
+}
+
+/* Desktop Nav */
+.tp-nav {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 900px) {
+  .tp-nav {
+    display: flex;
+  }
+}
+
+.tp-nav__link {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.6rem 0.9rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-cocoa-soft);
+  text-decoration: none;
+  border-radius: 9999px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.tp-nav__link:hover {
+  color: var(--color-toffee);
+  background: rgba(242, 190, 107, 0.14);
+}
+
+.tp-nav__link.is-active {
+  color: var(--color-toffee-deep);
+  font-weight: 700;
+}
+
+.tp-nav__paw {
+  position: absolute;
+  bottom: 1px;
+  width: 14px;
+  height: 14px;
+  fill: var(--color-toffee);
+  opacity: 0;
+  transform: translateY(4px) scale(0.6);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tp-nav__link.is-active .tp-nav__paw,
+.tp-nav__link:hover .tp-nav__paw {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Actions */
+.tp-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tp-header__whatsapp {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.15rem;
+  background: #25D366;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .tp-header__whatsapp {
+    display: inline-flex;
+  }
+}
+
+.tp-header__whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+}
+
+.tp-header__whatsapp svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Hamburger Button */
+.tp-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--color-toffee);
+  background: var(--color-honey-soft);
+  color: var(--color-toffee-deep);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+@media (min-width: 900px) {
+  .tp-hamburger {
+    display: none;
+  }
+}
+
+.tp-hamburger:hover {
+  transform: scale(1.05);
+  background: var(--color-honey);
+}
+
+.tp-hamburger__icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* Bottom Scallop Hem SVG */
+.tp-header__scallop {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 2px rgba(42, 23, 14, 0.04));
+}
+
+/* Mobile Drawer Overlay */
+.tp-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 23, 14, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.tp-drawer-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile Drawer */
+.tp-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(340px, 86vw);
+  background: var(--color-milk);
+  z-index: 160;
+  box-shadow: -6px 0 30px rgba(42, 23, 14, 0.2);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.tp-drawer.is-open {
+  transform: translateX(0);
+}
+
+.tp-drawer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed rgba(42, 23, 14, 0.12);
+}
+
+.tp-drawer__close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(42, 23, 14, 0.15);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  font-size: 1.4rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.tp-drawer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+}
+
+.tp-drawer__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  font-family: var(--font-plush);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-cocoa);
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.tp-drawer__link:hover,
+.tp-drawer__link.is-active {
+  background: var(--color-honey-soft);
+  color: var(--color-toffee-deep);
+  transform: translateX(4px);
+}
+
+.tp-drawer__info {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 2px dashed rgba(42, 23, 14, 0.12);
+  font-size: 0.85rem;
+  color: var(--color-cocoa-soft);
+}
+
+.tp-drawer__info-title {
+  font-weight: 700;
+  color: var(--color-cocoa);
+  margin-bottom: 0.25rem;
+}

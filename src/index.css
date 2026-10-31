@@ -1,0 +1,312 @@
+/* Core Design Tokens & Global System */
+:root {
+  --color-toffee: #c2622b;
+  --color-toffee-deep: #a24a1a;
+  --color-toffee-ink: #8e3f15;
+  --color-honey: #f2be6b;
+  --color-honey-soft: #fbe3b4;
+  --color-cocoa: #2a170e;
+  --color-cocoa-soft: #5a3a28;
+  --color-milk: #fffdf8;
+  --color-sky: #bfddf5;
+  --color-sky-deep: #2f6e9e;
+  --color-blush: #f9cdbf;
+
+  --font-sans: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-hand: "Shantell Sans", "Comic Sans MS", cursive;
+
+  --font-body: var(--font-sans);
+  --font-plush: var(--font-display);
+  --font-scrawl: var(--font-hand);
+
+  --ease-pounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --header-h: 4.75rem;
+  --bar-h: 0px;
+
+  color-scheme: light;
+  accent-color: var(--color-toffee-deep);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 4rem;
+    --bar-h: calc(4rem + env(safe-area-inset-bottom));
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  cursor: url('/cursor/paw.svg') 12 10, auto;
+}
+
+*, *::before, *::after {
+  cursor: inherit;
+}
+
+html {
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  overflow-x: clip;
+}
+
+body {
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: var(--color-honey);
+  color: var(--color-cocoa);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-toffee-deep);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+/* Global puppy paw interactive pointer */
+a, button, input, select, textarea, [role="button"], [role="tab"], label, summary, .btn, .tp-door__link, .tp-lineup__pup, .tp-photowall__print, .tp-chip, .tp-chips a, .tp-chips button, .tp-chat__step, .tp-clip__play, .tp-phone__compose, a *, button *, [role="button"] *, [role="tab"] *, .clickable, [tabindex="0"] {
+  cursor: url('/cursor/paw-press.svg') 12 10, pointer !important;
+}
+
+*:active {
+  cursor: url('/cursor/paw-press.svg') 12 10, pointer !important;
+}
+
+/* Typography Utility Classes */
+.font-plush {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.font-plush-text {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 36;
+}
+
+.font-scrawl {
+  font-family: var(--font-hand);
+  font-variation-settings: "INFM" 60, "BNCE" 30;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.text-giant {
+  font-size: clamp(3.1rem, 9.4vw, 9.75rem);
+}
+
+.text-huge {
+  font-size: clamp(2.6rem, 6.4vw, 6.25rem);
+}
+
+.text-big {
+  font-size: clamp(2rem, 4.2vw, 4rem);
+}
+
+.text-lede {
+  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  line-height: 1.5;
+}
+
+/* Buttons */
+.btn {
+  min-height: 3.25rem;
+  transition: transform 0.35s var(--ease-pounce), background-color 0.25s ease, box-shadow 0.35s var(--ease-silk);
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.6rem;
+  font-size: 1.0625rem;
+  font-weight: 650;
+  line-height: 1.1;
+  text-decoration: none;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: var(--color-toffee-deep);
+  color: var(--color-milk);
+  box-shadow: 0 0.5rem 0 -0.15rem var(--color-cocoa);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0.7rem 0 -0.15rem var(--color-cocoa);
+  transform: translateY(-2px) rotate(-1deg);
+}
+
+.btn-ghost {
+  color: var(--color-cocoa);
+  border: 2px solid var(--color-cocoa);
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  background: var(--color-cocoa);
+  color: var(--color-milk);
+}
+
+.btn-whatsapp {
+  color: #fff;
+  box-shadow: 0 0.5rem 0 -0.15rem var(--color-cocoa);
+  background: #1f7a4d;
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-2px) rotate(1deg);
+  background: #186840;
+}
+
+.link-ink {
+  color: var(--color-toffee-ink);
+  text-underline-offset: 0.2em;
+  text-decoration: underline #c2622b8c;
+  text-decoration-thickness: 2px;
+  transition: text-decoration-color 0.2s;
+}
+
+.link-ink:hover {
+  text-decoration-color: currentColor;
+}
+
+.chip {
+  background: var(--color-honey-soft);
+  border-radius: 999px;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: inline-flex;
+}
+
+.gutter {
+  padding-inline: var(--gutter);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only-focusable:not(:focus) {
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+}
+
+/* Common board & paper styles */
+.tp-board {
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  border-radius: 1.6rem;
+  padding: clamp(1.1rem, 2.6vw, 1.75rem);
+  position: relative;
+  box-shadow: 6px 8px #2a170e24;
+}
+
+.tp-board::before {
+  content: "";
+  pointer-events: none;
+  border: 1.5px dashed #2a170e38;
+  border-radius: 1.2rem;
+  position: absolute;
+  inset: 7px;
+}
+
+.tp-paper {
+  border: 3px solid var(--color-cocoa);
+  color: var(--color-cocoa);
+  background: radial-gradient(circle at 0 0, transparent 0 17px, #c2622b14 17px 18.5px, transparent 18.5px) 0 0/36px 36px,
+              radial-gradient(circle at 18px 18px, transparent 0 17px, #c2622b0f 17px 18.5px, transparent 18.5px) 0 0/36px 36px,
+              #fff8ea;
+  border-radius: 1.4rem;
+  padding: clamp(1.4rem, 3vw, 2.25rem);
+  position: relative;
+}
+
+/* Animations */
+@keyframes tp-twinkle {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.8) rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(20deg);
+  }
+}
+
+.tp-twinkle {
+  animation: 3.2s ease-in-out infinite tp-twinkle;
+}
+
+@keyframes tp-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-8px) rotate(8deg);
+  }
+}

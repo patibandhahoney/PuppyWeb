@@ -1,0 +1,298 @@
+/* Happy Families Page Styles - 1:1 clone of https://puppy.instabizweb.com/happy-families */
+
+.tp-page[data-page="families"] {
+  min-height: 100vh;
+}
+
+.tp-memories {
+  background: repeating-linear-gradient(90deg, transparent 0 46px, rgba(194, 98, 43, 0.043) 46px 48px),
+              radial-gradient(70% 40% at 50% 0, rgba(255, 214, 140, 0.45), transparent 70%),
+              linear-gradient(#fff3df, #fbe9cc 60%, #f7e0bd);
+  position: relative;
+  min-height: 100vh;
+}
+
+.tp-memories__head {
+  align-items: end;
+  gap: 2.5rem 4rem;
+  display: grid;
+}
+
+@media (min-width: 1024px) {
+  .tp-memories__head {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
+  }
+}
+
+.tp-memories__title {
+  line-height: 1.06;
+}
+
+.tp-memories__heart {
+  width: 0.42em;
+  color: var(--color-toffee);
+  margin-left: 0.25em;
+  display: inline-block;
+  translate: 0 -0.12em;
+}
+
+/* Sarah M. Note */
+.tp-memories__note {
+  background: linear-gradient(transparent 1.55rem, rgba(47, 110, 158, 0.13) 1.55rem 1.6rem) 0 0.4rem / 100% 1.6rem, #fffdf6;
+  border-radius: 0.3rem;
+  padding: 1.6rem 1.5rem 1.2rem;
+  position: relative;
+  rotate: 1.4deg;
+  box-shadow: 0 8px 18px -8px rgba(42, 23, 14, 0.35);
+}
+
+.tp-memories__note blockquote {
+  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  line-height: 1.6rem;
+  color: var(--color-cocoa);
+}
+
+.tp-memories__note figcaption {
+  color: var(--color-toffee-ink);
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+}
+
+/* Wall & Polaroids (Masonry Columns) */
+.tp-wall {
+  columns: 2 10.5rem;
+  column-gap: clamp(1rem, 3vw, 2.6rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .tp-wall {
+    columns: 3;
+  }
+}
+
+@media (min-width: 1280px) {
+  .tp-wall {
+    columns: 4;
+  }
+}
+
+.tp-wall__item {
+  break-inside: avoid;
+  padding: 1.1rem 0.35rem clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.tp-wall__print {
+  width: 100%;
+  text-align: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0.3rem;
+  padding: 0;
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.tp-wall__print:is(:hover, :focus-visible) .tp-polaroid {
+  translate: 0 -6px;
+  rotate: 0deg !important;
+  box-shadow: 0 1px 1px rgba(42, 23, 14, 0.12), 0 18px 30px -14px rgba(42, 23, 14, 0.42);
+}
+
+.tp-wall__print:active .tp-polaroid {
+  translate: 0 -2px;
+}
+
+.tp-polaroid {
+  rotate: var(--tilt);
+  transition: rotate 0.5s var(--ease-pounce, cubic-bezier(0.34, 1.56, 0.64, 1)),
+              translate 0.5s var(--ease-pounce, cubic-bezier(0.34, 1.56, 0.64, 1)),
+              box-shadow 0.4s var(--ease-silk, cubic-bezier(0.22, 1, 0.36, 1));
+  background: #fffefb;
+  border-radius: 0.2rem;
+  padding: 0.6rem 0.6rem 0;
+  display: block;
+  position: relative;
+  box-shadow: 0 1px 1px rgba(42, 23, 14, 0.12), 0 10px 20px -8px rgba(42, 23, 14, 0.36);
+}
+
+.tp-polaroid__photo {
+  background: #e8dfd3;
+  border-radius: 1px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(42, 23, 14, 0.08);
+}
+
+.tp-polaroid__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.tp-polaroid__caption {
+  min-height: 2.6rem;
+  color: var(--color-cocoa-soft);
+  text-align: center;
+  overflow-wrap: anywhere;
+  padding: 0.55rem 0.2rem 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.2;
+  display: block;
+}
+
+/* Washi Tape */
+.tp-tape {
+  z-index: 2;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.14) 3px 5px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.28), transparent 30%, rgba(255, 255, 255, 0.18) 70%, transparent),
+              var(--tape, #f6d79a);
+  width: clamp(4rem, 34%, 6.2rem);
+  height: 1.35rem;
+  position: absolute;
+  opacity: 0.88;
+  clip-path: polygon(0 10%, 3% 0, 50% 4%, 97% 0, 100% 14%, 98% 40%, 100% 66%, 97% 100%, 50% 96%, 3% 100%, 0 86%, 2% 52%);
+  pointer-events: none;
+  transition: scale 0.35s var(--ease-pounce, cubic-bezier(0.34, 1.56, 0.64, 1)), opacity 0.3s;
+}
+
+.tp-tape--center {
+  top: -0.7rem;
+  left: 50%;
+  translate: -50%;
+  rotate: -3deg;
+}
+
+.tp-tape--left {
+  top: -0.55rem;
+  left: 10%;
+  rotate: -9deg;
+}
+
+.tp-tape--right {
+  top: -0.55rem;
+  right: 10%;
+  rotate: 8deg;
+}
+
+.tp-tape--tl,
+.tp-tape--tr {
+  width: clamp(3.2rem, 26%, 4.6rem);
+  top: 0.05rem;
+}
+
+.tp-tape--tl {
+  left: -1rem;
+  rotate: -40deg;
+}
+
+.tp-tape--tr {
+  right: -1rem;
+  rotate: 40deg;
+}
+
+/* Animated Paw Print */
+.tp-wall__paw {
+  z-index: 3;
+  width: clamp(1.8rem, 24%, 2.6rem);
+  color: var(--color-toffee);
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: -1.25rem;
+  left: 50%;
+  translate: -50%;
+}
+
+.tp-wall__item[data-revealed="true"] .tp-wall__paw {
+  animation: tp-paw-pat 0.7s calc(var(--d, 0ms) + 0.2s) both;
+}
+
+@keyframes tp-paw-pat {
+  0% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.7, 0.6);
+    transform: translateY(-1.2rem) rotate(-16deg) scale(1.15);
+  }
+  32% {
+    opacity: 0.92;
+    animation-timing-function: cubic-bezier(0.3, 0, 0.3, 1);
+    transform: translateY(0.12rem) rotate(-6deg) scale(1.06, 0.88);
+  }
+  52% {
+    opacity: 0.92;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.8, 0.6);
+    transform: translateY(0) rotate(-6deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-1rem) rotate(6deg) scale(1.04);
+  }
+}
+
+.tp-wall__item[data-revealed="true"] .tp-polaroid {
+  animation: tp-print-bound 0.62s var(--d, 0ms) backwards;
+}
+
+@keyframes tp-print-bound {
+  0% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+    translate: 0 1.6rem;
+    scale: 0.9;
+  }
+  42% {
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.5, 0, 0.7, 0.4);
+    translate: 0 -0.4rem;
+    scale: 0.98 1.03;
+  }
+  68% {
+    animation-timing-function: cubic-bezier(0.3, 0, 0.3, 1);
+    translate: 0;
+    scale: 1.03 0.97;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+    scale: 1;
+  }
+}
+
+/* Memories Footer */
+.tp-memories__foot {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.5rem 1.5rem;
+  margin-top: clamp(2rem, 6vh, 4rem);
+  display: flex;
+}
+
+/* Lightbox Modal / Photo Dialog */
+dialog.tp-photo-dialog {
+  border: 0;
+  outline: 0;
+  max-width: none;
+  max-height: none;
+  width: 100vw;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(42, 23, 14, 0.95);
+  color: var(--color-milk);
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+}
+
+dialog.tp-photo-dialog::backdrop {
+  background-color: rgba(42, 23, 14, 0.7);
+  backdrop-filter: blur(4px);
+}

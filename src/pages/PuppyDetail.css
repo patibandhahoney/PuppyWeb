@@ -1,0 +1,1032 @@
+/* ==========================================================================
+   Puppy Storybook Detail Page
+   Exact match to https://puppy.instabizweb.com/puppies/korean-teacup-pomeranian-1
+   and combo puppies (e.g., Maltipoo & Cavapoo)
+   ========================================================================== */
+
+.tp-storybook {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* --------------------------------------------------------------------------
+   Book Ribbon Bookmark on Left Margin
+   -------------------------------------------------------------------------- */
+.tp-ribbon {
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: max(0.3rem, calc(var(--gutter, 2rem) * 0.5 - 0.6rem));
+  pointer-events: none;
+  width: 1.2rem;
+  position: absolute;
+}
+
+.tp-ribbon__track {
+  top: calc(var(--header-h, 4.75rem) + 1.4rem);
+  height: calc(100vh - var(--header-h, 4.75rem) - 4.4rem);
+  position: sticky;
+}
+
+.tp-ribbon__track:before {
+  content: "";
+  background: linear-gradient(90deg, #8e3f15, #c2622b 45%, #a24a1a);
+  border-radius: 0.6rem 0.6rem 0 0;
+  height: 0.6rem;
+  position: absolute;
+  inset: -0.6rem 0 auto;
+}
+
+.tp-ribbon__band {
+  transform-origin: 50% 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 0.75rem), 0 100%);
+  background: linear-gradient(90deg, #8e3f15, #c2622b 45%, #a24a1a);
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.15s ease-out;
+}
+
+@media (max-width: 1023px) {
+  .tp-ribbon {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Page Layout & Container
+   -------------------------------------------------------------------------- */
+.tp-pup-container {
+  max-width: 110rem;
+  margin-inline: auto;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .tp-pup-container {
+    padding-top: 3rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breadcrumb
+   -------------------------------------------------------------------------- */
+.tp-pup-breadcrumb {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-cocoa-soft);
+  margin-bottom: 0.75rem;
+}
+
+.tp-pup-breadcrumb .link-ink {
+  color: var(--color-toffee-ink);
+  text-underline-offset: 0.2em;
+  text-decoration: underline #c2622b8c;
+  text-decoration-thickness: 2px;
+  transition: text-decoration-color 0.2s;
+}
+
+.tp-pup-breadcrumb .link-ink:hover {
+  text-decoration-color: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   Chapter Badges (1, 2, 3, 4)
+   -------------------------------------------------------------------------- */
+.tp-chapter {
+  color: var(--color-toffee-ink);
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.15rem;
+  display: flex;
+}
+
+.tp-chapter__n {
+  aspect-ratio: 1;
+  border: 2.5px solid currentColor;
+  border-radius: 52% 46% 50% 48%;
+  flex: none;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  font-size: 1.15rem;
+  line-height: 1;
+  display: grid;
+  transform: rotate(-6deg);
+}
+
+.tp-chapter .font-scrawl {
+  font-family: var(--font-hand);
+  font-variation-settings: "INFM" 60, "BNCE" 30;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+
+/* --------------------------------------------------------------------------
+   Main Grid Layout: 7 cols Gallery (Left) & 5 cols Info Board (Right)
+   -------------------------------------------------------------------------- */
+.tp-pup-layout {
+  margin-top: 1rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .tp-pup-layout {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 3.5rem;
+  }
+
+  .tp-pup-gallery-col {
+    grid-column: span 7 / span 7;
+    min-width: 0;
+  }
+
+  .tp-pup-info-col {
+    grid-column: span 5 / span 5;
+    min-width: 0;
+  }
+
+  .tp-pup-sticky-container {
+    position: sticky;
+    top: calc(var(--header-h, 4.75rem) + 5.5rem);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Gallery Column (Left)
+   -------------------------------------------------------------------------- */
+.tp-storypage {
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-honey-soft);
+  box-shadow: 7px 7px 0 -2px var(--color-milk),
+              7px 7px 0 1px var(--color-cocoa),
+              14px 14px 0 -2px var(--color-milk),
+              14px 14px 0 1px var(--color-cocoa);
+  border-radius: 1.2rem;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/5;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .tp-storypage {
+    aspect-ratio: 5/6;
+  }
+}
+
+.tp-storypage__main-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: zoom-in;
+  border: none;
+  padding: 0;
+  background: transparent;
+  transition: opacity 0.3s ease;
+}
+
+.tp-storypage__main-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tp-storypage__video-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tp-storypage__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+.tp-storypage__expand-btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 10;
+  border-radius: 999px;
+  background: rgba(42, 23, 14, 0.8);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-milk);
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.tp-storypage__expand-btn:hover {
+  background: var(--color-cocoa);
+}
+
+.tp-storypage__controls {
+  position: absolute;
+  inset-inline: 1rem;
+  bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.tp-storypage__arrow {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-cocoa);
+  background: rgba(255, 253, 248, 0.95);
+  color: var(--color-cocoa);
+  font-size: 1.35rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.2s var(--ease-pounce), background-color 0.2s;
+  user-select: none;
+}
+
+.tp-storypage__arrow:hover {
+  background: var(--color-honey-soft);
+  transform: scale(1.08);
+}
+
+.tp-storypage__counter {
+  align-self: center;
+  border-radius: 999px;
+  background: rgba(42, 23, 14, 0.8);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-milk);
+}
+
+/* Thumbnails row */
+.tp-storypage__thumbs {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.25rem;
+  scrollbar-width: thin;
+  list-style: none;
+}
+
+.tp-storypage__thumb-item {
+  flex-shrink: 0;
+}
+
+.tp-storypage__thumb-btn {
+  position: relative;
+  display: block;
+  height: 6rem;
+  width: 5rem;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  border: 3px solid rgba(42, 23, 14, 0.3);
+  transition: transform 0.3s, border-color 0.3s;
+  cursor: pointer;
+  padding: 0;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .tp-storypage__thumb-btn {
+    height: 7rem;
+    width: 6rem;
+  }
+}
+
+.tp-storypage__thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tp-storypage__thumb-btn:hover {
+  border-color: var(--color-cocoa);
+  transform: rotate(-2deg);
+}
+
+.tp-storypage__thumb-btn[aria-current="true"] {
+  border-color: var(--color-toffee-deep);
+  transform: rotate(-3deg) translateY(-0.25rem);
+}
+
+.tp-storypage__thumb-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(42, 23, 14, 0.35);
+  color: var(--color-milk);
+  font-size: 1.15rem;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Tag Board (Right Column)
+   -------------------------------------------------------------------------- */
+.tp-tag {
+  transform-origin: 2.6rem -0.6rem;
+  position: relative;
+}
+
+.tp-board {
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  border-radius: 2.2rem 2.2rem 2.2rem 0.6rem !important;
+  padding: clamp(1.75rem, 3vw, 2.25rem) !important;
+  position: relative;
+  box-shadow: 6px 8px #2a170e24;
+  margin-top: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .tp-board {
+    margin-top: 5rem;
+  }
+}
+
+.tp-board:before {
+  content: "";
+  pointer-events: none;
+  border: 1.5px dashed #2a170e38;
+  border-radius: 1.8rem 1.8rem 1.8rem 0.4rem;
+  position: absolute;
+  inset: 7px;
+}
+
+.tp-tag__ring {
+  z-index: 1;
+  aspect-ratio: 1;
+  border: 3.5px solid var(--color-cocoa);
+  background: radial-gradient(circle, transparent 0 0.55rem, var(--color-honey) 0.6rem);
+  border-radius: 50%;
+  width: 2.2rem;
+  position: absolute;
+  top: -1.2rem;
+  left: 1.5rem;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.tp-tag-peeking-teddy {
+  position: absolute;
+  top: -4.8rem;
+  right: 1.5rem;
+  width: 9.5rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Status Chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--color-honey-soft);
+  border: 1.5px solid var(--color-cocoa);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-cocoa);
+}
+
+.chip-paw {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-toffee);
+}
+
+/* Puppy Name Title */
+.tp-pup-name {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  line-height: 0.95;
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  color: var(--color-cocoa);
+}
+
+/* Details list dl */
+.tp-pup-spec-grid {
+  margin-top: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+}
+
+.tp-pup-spec-item dt {
+  font-family: var(--font-hand);
+  font-size: 0.875rem;
+  color: var(--color-cocoa-soft);
+}
+
+.tp-pup-spec-item dd {
+  margin-top: 0.125rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-cocoa);
+}
+
+/* Caption under dl for combo puppies */
+.tp-pup-caption {
+  margin-top: 1.5rem;
+  white-space: pre-line;
+  color: var(--color-cocoa-soft);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Action Buttons */
+.tp-pup-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Paper: What Comes With This Puppy (Chapter 2)
+   Exact match to https://puppy.instabizweb.com
+   -------------------------------------------------------------------------- */
+.tp-paper {
+  border: 3px solid var(--color-cocoa);
+  color: var(--color-cocoa);
+  background: radial-gradient(circle at 0 0, transparent 0 17px, #c2622b14 17px 18.5px, transparent 18.5px) 0 0/36px 36px,
+              radial-gradient(circle at 18px 18px, transparent 0 17px, #c2622b0f 17px 18.5px, transparent 18.5px) 0 0/36px 36px,
+              #fff8ea;
+  border-radius: 1.4rem;
+  padding: clamp(1.4rem, 3vw, 2.25rem);
+  position: relative;
+  margin-top: 2rem;
+  transform: rotate(-1deg);
+}
+
+.tp-paper.-rotate-1 {
+  transform: rotate(-1deg);
+}
+
+.tp-paper .tp-chapter {
+  color: var(--color-toffee-ink);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.15rem;
+}
+
+.tp-paper .tp-chapter .tp-chapter__n {
+  aspect-ratio: 1;
+  border: 2.5px solid currentColor;
+  border-radius: 52% 46% 50% 48%;
+  flex: none;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  font-size: 1.15rem;
+  line-height: 1;
+  display: grid;
+  transform: rotate(-6deg);
+}
+
+.tp-paper .tp-chapter .font-scrawl {
+  font-family: var(--font-hand);
+  font-variation-settings: "INFM" 60, "BNCE" 30;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.tp-paper__heading {
+  margin-top: 0.35rem;
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  line-height: 1.15;
+  font-size: 1.9rem;
+  color: var(--color-cocoa);
+}
+
+.tp-paper__list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; /* exact space-y-2.5 */
+  list-style: none;
+  padding: 0;
+}
+
+.tp-paper__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--color-cocoa);
+}
+
+.tp-paper__check {
+  width: 1.5rem !important; /* size-6 */
+  height: 1.5rem !important;
+  min-width: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  color: var(--color-toffee-deep); /* #a24a1a */
+}
+
+/* --------------------------------------------------------------------------
+   The Way Home Trail Section (Chapter 3)
+   -------------------------------------------------------------------------- */
+.tp-trail-section {
+  margin-top: 5rem;
+}
+
+.tp-trail-heading {
+  margin-top: 0.75rem;
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  line-height: 1.1;
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  color: var(--color-cocoa);
+}
+
+.tp-trail {
+  gap: 2rem;
+  display: grid;
+  list-style: none;
+  padding: 0;
+  margin-top: 2.5rem;
+}
+
+.tp-trail > li {
+  padding-left: 4.5rem;
+  position: relative;
+}
+
+.tp-trail > li:not(:last-child):before {
+  content: "";
+  position: absolute;
+  top: 3.9rem;
+  bottom: -1.6rem;
+  left: 1.15rem;
+  width: 1.1rem;
+  background: var(--color-toffee);
+  opacity: 0.55;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M32%2030.5c-7.6%200-15.6%208.3-15.6%2015.5%200%205.4%204.2%208.3%209.2%208.3%202.6%200%204.5-1.1%206.4-1.1s3.8%201.1%206.4%201.1c5%200%209.2-2.9%209.2-8.3%200-7.2-8-15.5-15.6-15.5zM19.28%2026.71C21.07%2030.08%2020.42%2033.92%2017.84%2035.29C15.25%2036.67%2011.71%2035.05%209.92%2031.69C8.13%2028.32%208.78%2024.48%2011.36%2023.11C13.95%2021.73%2017.49%2023.35%2019.28%2026.71ZM29.62%2015.64C30.32%2019.62%2028.46%2023.26%2025.47%2023.79C22.48%2024.32%2019.48%2021.53%2018.78%2017.56C18.08%2013.58%2019.94%209.94%2022.93%209.41C25.92%208.88%2028.92%2011.67%2029.62%2015.64ZM45.22%2017.56C44.52%2021.53%2041.52%2024.32%2038.53%2023.79C35.54%2023.26%2033.68%2019.62%2034.38%2015.64C35.08%2011.67%2038.08%208.88%2041.07%209.41C44.06%209.94%2045.92%2013.58%2045.22%2017.56ZM54.08%2031.69C52.29%2035.05%2048.75%2036.67%2046.16%2035.29C43.58%2033.92%2042.93%2030.08%2044.72%2026.71C46.51%2023.35%2050.05%2021.73%2052.64%2023.11C55.22%2024.48%2055.87%2028.32%2054.08%2031.69Z%22%2F%3E%3C%2Fsvg%3E") 50% 0/1rem 1.35rem space;
+  mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M32%2030.5c-7.6%200-15.6%208.3-15.6%2015.5%200%205.4%204.2%208.3%209.2%208.3%202.6%200%204.5-1.1%206.4-1.1s3.8%201.1%206.4%201.1c5%200%209.2-2.9%209.2-8.3%200-7.2-8-15.5-15.6-15.5zM19.28%2026.71C21.07%2030.08%2020.42%2033.92%2017.84%2035.29C15.25%2036.67%2011.71%2035.05%209.92%2031.69C8.13%2028.32%208.78%2024.48%2011.36%2023.11C13.95%2021.73%2017.49%2023.35%2019.28%2026.71ZM29.62%2015.64C30.32%2019.62%2028.46%2023.26%2025.47%2023.79C22.48%2024.32%2019.48%2021.53%2018.78%2017.56C18.08%2013.58%2019.94%209.94%2022.93%209.41C25.92%208.88%2028.92%2011.67%2029.62%2015.64ZM45.22%2017.56C44.52%2021.53%2041.52%2024.32%2038.53%2023.79C35.54%2023.26%2033.68%2019.62%2034.38%2015.64C35.08%2011.67%2038.08%208.88%2041.07%209.41C44.06%209.94%2045.92%2013.58%2045.22%2017.56ZM54.08%2031.69C52.29%2035.05%2048.75%2036.67%2046.16%2035.29C43.58%2033.92%2042.93%2030.08%2044.72%2026.71C46.51%2023.35%2050.05%2021.73%2052.64%2023.11C55.22%2024.48%2055.87%2028.32%2054.08%2031.69Z%22%2F%3E%3C%2Fsvg%3E") 50% 0/1rem 1.35rem space;
+}
+
+@media (min-width: 1024px) {
+  .tp-trail--row {
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    gap: 2.5rem;
+  }
+  .tp-trail--row > li {
+    padding-top: 4.6rem;
+    padding-left: 0;
+  }
+  .tp-trail--row > li:not(:last-child):before {
+    width: auto;
+    height: 1.1rem;
+    top: 1.1rem;
+    left: 4.1rem;
+    right: -2.1rem;
+    bottom: auto;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M32%2030.5c-7.6%200-15.6%208.3-15.6%2015.5%200%205.4%204.2%208.3%209.2%208.3%202.6%200%204.5-1.1%206.4-1.1s3.8%201.1%206.4%201.1c5%200%209.2-2.9%209.2-8.3%200-7.2-8-15.5-15.6-15.5zM19.28%2026.71C21.07%2030.08%2020.42%2033.92%2017.84%2035.29C15.25%2036.67%2011.71%2035.05%209.92%2031.69C8.13%2028.32%208.78%2024.48%2011.36%2023.11C13.95%2021.73%2017.49%2023.35%2019.28%2026.71ZM29.62%2015.64C30.32%2019.62%2028.46%2023.26%2025.47%2023.79C22.48%2024.32%2019.48%2021.53%2018.78%2017.56C18.08%2013.58%2019.94%209.94%2022.93%209.41C25.92%208.88%2028.92%2011.67%2029.62%2015.64ZM45.22%2017.56C44.52%2021.53%2041.52%2024.32%2038.53%2023.79C35.54%2023.26%2033.68%2019.62%2034.38%2015.64C35.08%2011.67%2038.08%208.88%2041.07%209.41C44.06%209.94%2045.92%2013.58%2045.22%2017.56ZM54.08%2031.69C52.29%2035.05%2048.75%2036.67%2046.16%2035.29C43.58%2033.92%2042.93%2030.08%2044.72%2026.71C46.51%2023.35%2050.05%2021.73%2052.64%2023.11C55.22%2024.48%2055.87%2028.32%2054.08%2031.69Z%22%2F%3E%3C%2Fsvg%3E") 0/1.35rem 1rem space;
+    mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M32%2030.5c-7.6%200-15.6%208.3-15.6%2015.5%200%205.4%204.2%208.3%209.2%208.3%202.6%200%204.5-1.1%206.4-1.1s3.8%201.1%206.4%201.1c5%200%209.2-2.9%209.2-8.3%200-7.2-8-15.5-15.6-15.5zM19.28%2026.71C21.07%2030.08%2020.42%2033.92%2017.84%2035.29C15.25%2036.67%2011.71%2035.05%209.92%2031.69C8.13%2028.32%208.78%2024.48%2011.36%2023.11C13.95%2021.73%2017.49%2023.35%2019.28%2026.71ZM29.62%2015.64C30.32%2019.62%2028.46%2023.26%2025.47%2023.79C22.48%2024.32%2019.48%2021.53%2018.78%2017.56C18.08%2013.58%2019.94%209.94%2022.93%209.41C25.92%208.88%2028.92%2011.67%2029.62%2015.64ZM45.22%2017.56C44.52%2021.53%2041.52%2024.32%2038.53%2023.79C35.54%2023.26%2033.68%2019.62%2034.38%2015.64C35.08%2011.67%2038.08%208.88%2041.07%209.41C44.06%209.94%2045.92%2013.58%2045.22%2017.56ZM54.08%2031.69C52.29%2035.05%2048.75%2036.67%2046.16%2035.29C43.58%2033.92%2042.93%2030.08%2044.72%2026.71C46.51%2023.35%2050.05%2021.73%2052.64%2023.11C55.22%2024.48%2055.87%2028.32%2054.08%2031.69Z%22%2F%3E%3C%2Fsvg%3E") 0/1.35rem 1rem space;
+  }
+}
+
+.tp-trail__num {
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-milk);
+  width: 3.4rem;
+  height: 3.4rem;
+  color: var(--color-cocoa);
+  border-radius: 50%;
+  place-items: center;
+  font-size: 1.75rem;
+  display: grid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-display);
+}
+
+.tp-trail__title {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 36;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-cocoa);
+}
+
+.tp-trail__desc {
+  margin-top: 0.5rem;
+  max-width: 38ch;
+  color: var(--color-cocoa-soft);
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Chapter 4: Dear TeddyPups (Enquiry Letter Form)
+   -------------------------------------------------------------------------- */
+.tp-letter {
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  border-radius: 1.6rem;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  position: relative;
+  box-shadow: 8px 10px #2a170e29;
+  margin-top: 5rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .tp-letter {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .tp-letter__left {
+    grid-column: span 4 / span 4;
+  }
+
+  .tp-letter__right {
+    grid-column: 6 / span 7;
+  }
+}
+
+.tp-letter__stamp {
+  aspect-ratio: 1;
+  border: 3px dashed var(--color-toffee-deep);
+  background: var(--color-honey-soft);
+  width: 4.75rem;
+  height: 4.75rem;
+  color: var(--color-toffee-deep);
+  border-radius: 0.5rem;
+  place-items: center;
+  display: grid;
+  position: absolute;
+  top: -1.25rem;
+  right: 2rem;
+  transform: rotate(6deg);
+}
+
+.tp-letter__stamp-paw {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.tp-letter__title {
+  margin-top: 0.5rem;
+  line-height: 1.1;
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  color: var(--color-cocoa);
+}
+
+.tp-letter__desc {
+  margin-top: 1rem;
+  color: var(--color-cocoa-soft);
+  line-height: 1.6;
+}
+
+/* Form controls */
+.tp-enquiry-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tp-form-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .tp-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.tp-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.tp-form-field--full {
+  margin-top: 1.25rem;
+}
+
+.tp-form-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-cocoa);
+  margin-bottom: 0.375rem;
+}
+
+.tp-form-opt {
+  font-weight: normal;
+  color: var(--color-cocoa-soft);
+}
+
+.tp-form-input {
+  height: 3rem;
+  width: 100%;
+  border-radius: 1rem;
+  border: 2px solid rgba(42, 23, 14, 0.4);
+  background: var(--color-milk);
+  padding-inline: 1rem;
+  font-size: 1rem;
+  outline: none;
+  color: var(--color-cocoa);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tp-form-input:focus {
+  border-color: var(--color-cocoa);
+  box-shadow: 0 0 0 4px rgba(242, 190, 107, 0.6);
+}
+
+.tp-form-hint {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-cocoa-soft);
+}
+
+.tp-form-textarea {
+  width: 100%;
+  border-radius: 1rem;
+  border: 2px solid rgba(42, 23, 14, 0.4);
+  background: var(--color-milk);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  color: var(--color-cocoa);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: vertical;
+}
+
+.tp-form-textarea:focus {
+  border-color: var(--color-cocoa);
+  box-shadow: 0 0 0 4px rgba(242, 190, 107, 0.6);
+}
+
+.tp-form-submit {
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .tp-form-submit {
+    width: auto;
+    align-self: flex-start;
+  }
+}
+
+/* Success status card */
+.tp-sent {
+  border-radius: 2rem;
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-honey);
+  padding: 2.25rem 2rem;
+  text-align: center;
+  box-shadow: 6px 8px #2a170e24;
+}
+
+.tp-envelope {
+  margin-inline: auto;
+  width: 8rem;
+}
+
+.tp-sent__title {
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: var(--color-cocoa);
+}
+
+.tp-sent__desc {
+  margin-inline: auto;
+  margin-top: 0.5rem;
+  max-width: 38ch;
+  color: var(--color-cocoa-soft);
+}
+
+.tp-sent__btn {
+  margin-top: 1.5rem;
+  display: inline-flex;
+}
+
+/* --------------------------------------------------------------------------
+   Previous / Next Puppy Navigation
+   -------------------------------------------------------------------------- */
+.tp-pup-nav-grid {
+  margin-top: 4rem;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .tp-pup-nav-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.tp-pup-nav-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  border-radius: 2rem;
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-milk);
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  color: var(--color-cocoa);
+  transition: transform 0.4s var(--ease-pounce), box-shadow 0.3s;
+  cursor: pointer;
+  box-shadow: 4px 6px #2a170e18;
+}
+
+.tp-pup-nav-card:hover {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow: 6px 10px #2a170e24;
+}
+
+@media (min-width: 640px) {
+  .tp-pup-nav-card--next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+}
+
+.tp-pup-nav-card__thumb {
+  position: relative;
+  height: 6rem;
+  width: 5rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 999px 999px 0.6rem 0.6rem;
+  border: 3px solid var(--color-cocoa);
+  background: var(--color-honey-soft);
+}
+
+.tp-pup-nav-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tp-pup-nav-card__meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.tp-pup-nav-card__kicker {
+  font-size: 0.875rem;
+  color: var(--color-cocoa-soft);
+}
+
+.tp-pup-nav-card__name {
+  font-size: 1.6rem;
+  line-height: 1.1;
+  color: var(--color-cocoa);
+}
+
+/* --------------------------------------------------------------------------
+   Lightbox Modal for Fullscreen Photo & Video
+   -------------------------------------------------------------------------- */
+.tp-photo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(42, 23, 14, 0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  animation: tp-fade-in 0.25s ease-out;
+}
+
+.tp-photo-lightbox__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  color: var(--color-milk);
+}
+
+.tp-photo-lightbox__title {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: var(--color-milk);
+}
+
+.tp-photo-lightbox__close {
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  border: 2px solid var(--color-cocoa);
+  border-radius: 999px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.tp-photo-lightbox__close:hover {
+  background: var(--color-honey-soft);
+  transform: scale(1.05);
+}
+
+.tp-photo-lightbox__stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+.tp-photo-lightbox__img {
+  max-width: 90vw;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 1rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--color-cocoa);
+}
+
+.tp-photo-lightbox__video {
+  max-width: 90vw;
+  max-height: 75vh;
+  border-radius: 1rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  border: 3px solid var(--color-cocoa);
+  background: #000;
+}
+
+.tp-photo-lightbox__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem 1.5rem;
+}
+
+.tp-photo-lightbox__nav-btn {
+  height: 3rem;
+  border-radius: 999px;
+  background: var(--color-honey);
+  padding: 0 1.5rem;
+  font-weight: 700;
+  color: var(--color-cocoa);
+  border: 2px solid var(--color-cocoa);
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.tp-photo-lightbox__nav-btn:hover {
+  background: var(--color-honey-soft);
+  transform: scale(1.05);
+}
+
+.tp-photo-lightbox__counter {
+  font-weight: 600;
+  color: rgba(255, 253, 248, 0.9);
+}
+
+@keyframes tp-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,126 @@
+.tp-photo-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 23, 14, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 220;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  animation: 0.25s ease-out tp-fade-in;
+}
+
+.tp-photo-modal {
+  position: relative;
+  max-width: 620px;
+  width: 100%;
+  background: #ffffff;
+  padding: 1.5rem 1.5rem 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+  animation: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) tp-modal-pop;
+}
+
+/* Washi tape decoration at top */
+.tp-photo-modal__washi {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 130px;
+  height: 28px;
+  background: rgba(242, 190, 107, 0.85);
+  box-shadow: 0 2px 6px rgba(42, 23, 14, 0.15);
+  border-left: 2px dashed rgba(42, 23, 14, 0.2);
+  border-right: 2px dashed rgba(42, 23, 14, 0.2);
+  pointer-events: none;
+}
+
+.tp-photo-modal__close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: var(--color-cocoa);
+  color: #ffffff;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease;
+  z-index: 10;
+}
+
+.tp-photo-modal__close:hover {
+  transform: scale(1.1);
+  background: var(--color-toffee);
+}
+
+.tp-photo-modal__img-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #f5f0eb;
+  margin-bottom: 1.25rem;
+}
+
+.tp-photo-modal__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tp-photo-modal__caption {
+  text-align: center;
+}
+
+.tp-photo-modal__quote {
+  font-family: var(--font-scrawl);
+  font-size: 1.25rem;
+  color: var(--color-cocoa);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.tp-photo-modal__family {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-toffee-deep);
+}
+
+.tp-photo-modal__nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(42, 23, 14, 0.15);
+}
+
+.tp-photo-modal__nav-btn {
+  background: transparent;
+  border: 1px solid rgba(42, 23, 14, 0.2);
+  border-radius: 9999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-cocoa);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tp-photo-modal__nav-btn:hover {
+  background: var(--color-honey-soft);
+  border-color: var(--color-honey);
+  color: var(--color-toffee-deep);
+}
